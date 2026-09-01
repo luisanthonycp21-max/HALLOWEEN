@@ -12,7 +12,7 @@
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             color: #f8fafc;
-            background-color: #0b071e; /* Fondo sólido inmediato para evitar pantalla negra */
+            background-color: #0b071e;
             background-image: 
                 linear-gradient(rgba(5, 2, 12, 0.65), rgba(5, 1, 8, 0.9)),
                 url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=60&w=1000&auto=format&fit=crop");
@@ -429,6 +429,11 @@
                 <p>Invitado: <strong>{{ nombre }}</strong></p>
                 <p style="font-size: .82rem; color: #94a3b8; margin-top: 7px;">Muestra este código QR en la entrada.</p>
                 <div id="qrcode"></div>
+                
+                <!-- BOTÓN WHATSAPP -->
+                <a id="whatsapp-btn" href="#" target="_blank" style="display: block; margin-top: 15px; background: #25d366; color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);">
+                    💬 Enviar confirmación a WhatsApp
+                </a>
             </div>
             
             <a href="/" class="back-link">← Generar otro pase</a>
@@ -448,6 +453,17 @@
                             colorLight: "#ffffff",
                             correctLevel: QRCode.CorrectLevel.H
                         });
+                    }
+
+                    // WHATSAPP CONFIGURADO
+                    var tuNumeroWhatsApp = "51946464005"; 
+                    var mensajeWhatsApp = "¡Prepárate Nilton, ahí estaré! 🎃 - " + nombreInvitado;
+                    
+                    var whatsappUrl = "https://api.whatsapp.com/send?phone=" + tuNumeroWhatsApp + "&text=" + encodeURIComponent(mensajeWhatsApp);
+                    
+                    var btnWhatsApp = document.getElementById("whatsapp-btn");
+                    if (btnWhatsApp) {
+                        btnWhatsApp.href = whatsappUrl;
                     }
                 });
             </script>
