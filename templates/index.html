@@ -54,11 +54,50 @@
             to { transform: scale(1.04); opacity: 1; }
         }
 
+        /* --- IMÁGENES FLOTANTES DECORATIVAS --- */
+        .side-image-left {
+            position: fixed;
+            left: 3%;
+            top: 62%;
+            width: 140px;
+            border-radius: 12px;
+            border: 2px solid #a855f7;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+            z-index: 6;
+            pointer-events: none;
+            transform: rotate(-6deg);
+            animation: floatImg1 4s ease-in-out infinite alternate;
+        }
+
+        .side-image-right {
+            position: fixed;
+            right: 3%;
+            top: 62%;
+            width: 140px;
+            border-radius: 12px;
+            border: 2px solid #fb923c;
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+            z-index: 6;
+            pointer-events: none;
+            transform: rotate(6deg);
+            animation: floatImg2 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatImg1 {
+            0% { transform: translateY(0) rotate(-6deg); }
+            100% { transform: translateY(-10px) rotate(-3deg); }
+        }
+
+        @keyframes floatImg2 {
+            0% { transform: translateY(0) rotate(6deg); }
+            100% { transform: translateY(-10px) rotate(3deg); }
+        }
+
         /* --- TEXTO IZQUIERDO: YA KCHE YA!!! --- */
         .left-diagonal-text {
             position: fixed;
             left: 5%;
-            top: 40%;
+            top: 30%;
             transform: translateY(-50%) rotate(-25deg);
             font-size: 2.3rem;
             font-weight: 900;
@@ -79,7 +118,7 @@
         .bottom-left-logo {
             position: fixed;
             left: 5%;
-            bottom: 8%;
+            bottom: 5%;
             z-index: 8;
             pointer-events: none;
         }
@@ -114,7 +153,7 @@
         .right-diagonal-text {
             position: fixed;
             right: 5%;
-            top: 45%;
+            top: 35%;
             transform: translateY(-50%) rotate(25deg);
             font-size: 2.3rem;
             font-weight: 900;
@@ -378,6 +417,10 @@
                 left: 8px;
                 transform: scale(0.55);
             }
+            /* Ocultamos las imágenes flotantes laterales en pantallas muy pequeñas para que la tarjeta sea la estrella */
+            .side-image-left, .side-image-right {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -385,6 +428,10 @@
 
     <div class="moon"></div>
     
+    <!-- Imágenes flotantes decorativas con los nombres de tus archivos subidos -->
+    <img src="{{ url_for('static', filename='Captura de pantalla 2026-09-01 182707.png') }}" class="side-image-left" alt="Decoración 1">
+    <img src="{{ url_for('static', filename='Captura de pantalla 2026-09-01 182727.png') }}" class="side-image-right" alt="Decoración 2">
+
     <!-- Izquierda: Texto YA KCHE YA!!! -->
     <div class="left-diagonal-text">YA KCHE YA!!!</div>
 
