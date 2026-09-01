@@ -316,23 +316,27 @@
         }
         .back-link:hover { color: #fb923c; text-decoration: underline; }
 
-        /* --- AJUSTE RESPONSIVO PARA CELULARES (ÚNICO AGREGADO) --- */
-        @media (max-width: 768px) {
-            .left-diagonal-text, .right-diagonal-text {
-                font-size: 1.1rem !important;
-            }
+        /* --- AJUSTE VISIBLE EN CELULARES PARA LOS TEXTOS LATERALES --- */
+        @media (max-width: 850px) {
             .left-diagonal-text {
-                top: 15% !important;
-                left: 3% !important;
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                transform: rotate(-10deg);
+                font-size: 1rem !important;
             }
             .right-diagonal-text {
-                top: 15% !important;
-                right: 3% !important;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                transform: rotate(10deg);
+                font-size: 1rem !important;
             }
             .bottom-left-logo {
-                bottom: 15px !important;
-                left: 15px !important;
-                transform: scale(0.75);
+                position: absolute;
+                bottom: 10px;
+                left: 15px;
+                transform: scale(0.7);
             }
         }
     </style>
