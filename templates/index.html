@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎃 HALLOWEEN PARTY - Casa de Nilton</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            color: #f8fafc;
+            background:
+                linear-gradient(rgba(5, 2, 12, 0.55), rgba(5, 1, 8, 0.88)),
+                url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000&auto=format&fit=crop");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(107, 33, 168, 0.20), transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .moon {
+            position: fixed;
+            width: 230px;
+            height: 230px;
+            top: 7%;
+            right: 13%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fff7c2 42%, #facc15 72%, #f59e0b 100%);
+            box-shadow: 0 0 25px rgba(255, 255, 220, 0.9), 0 0 70px rgba(250, 204, 21, 0.55), 0 0 130px rgba(250, 204, 21, 0.25);
+            z-index: 1;
+            animation: moonGlow 4s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes moonGlow {
+            from { transform: scale(1); opacity: 0.92; }
+            to { transform: scale(1.04); opacity: 1; }
+        }
+
+        /* --- TEXTO IZQUIERDO: YA KCHE YA!!! --- */
+        .left-diagonal-text {
+            position: fixed;
+            left: 5%;
+            top: 40%;
+            transform: translateY(-50%) rotate(-25deg);
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: #fb923c;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.8), 0 0 30px rgba(168, 85, 247, 0.6);
+            z-index: 8;
+            pointer-events: none;
+            animation: leftDiagonalPulse 3s ease-in-out infinite alternate;
+            letter-spacing: 2px;
+        }
+
+        @keyframes leftDiagonalPulse {
+            0% { transform: translateY(-50%) rotate(-25deg) scale(1); opacity: 0.8; }
+            100% { transform: translateY(-50%) rotate(-22deg) scale(1.08); opacity: 1; text-shadow: 0 0 25px rgba(249, 115, 22, 1), 0 0 40px rgba(168, 85, 247, 0.9); }
+        }
+
+        /* --- LOGO ESTILO P...HUB EN LA PARTE INFERIOR IZQUIERDA --- */
+        .bottom-left-logo {
+            position: fixed;
+            left: 5%;
+            bottom: 8%;
+            z-index: 8;
+            pointer-events: none;
+        }
+
+        .hub-logo {
+            display: inline-flex;
+            background-color: #000000;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.9), 0 0 12px rgba(249, 115, 22, 0.5);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        .hub-white {
+            color: #ffffff;
+            background-color: #000000;
+            padding: 2px 4px;
+        }
+
+        .hub-orange {
+            color: #000000;
+            background-color: #f97316;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 2px;
+        }
+
+        /* --- TEXTO DIAGONAL DERECHO: MECATRONICOS!!! --- */
+        .right-diagonal-text {
+            position: fixed;
+            right: 5%;
+            top: 45%;
+            transform: translateY(-50%) rotate(25deg);
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: #a855f7;
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.8), 0 0 30px rgba(249, 115, 22, 0.6);
+            z-index: 8;
+            pointer-events: none;
+            animation: rightDiagonalPulse 3s ease-in-out infinite alternate;
+            letter-spacing: 2px;
+        }
+
+        @keyframes rightDiagonalPulse {
+            0% { transform: translateY(-50%) rotate(25deg) scale(1); opacity: 0.8; }
+            100% { transform: translateY(-50%) rotate(22deg) scale(1.08); opacity: 1; text-shadow: 0 0 25px rgba(168, 85, 247, 1), 0 0 40px rgba(249, 115, 22, 0.9); }
+        }
+
+        .web {
+            position: fixed;
+            width: 330px;
+            height: 330px;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0.72;
+        }
+
+        .web::before, .web::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-radial-gradient(circle at 0 0, transparent 0 30px, rgba(255,255,255,0.55) 31px 33px);
+            border-radius: 50%;
+        }
+
+        .web::after {
+            background: linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.6) 50%, transparent 51%),
+                        linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.6) 50%, transparent 51%),
+                        linear-gradient(90deg, transparent 49%, rgba(255,255,255,0.5) 50%, transparent 51%),
+                        linear-gradient(0deg, transparent 49%, rgba(255,255,255,0.5) 50%, transparent 51%);
+        }
+
+        .web-left { top: -35px; left: -35px; }
+        .web-right { top: -35px; right: -35px; transform: scaleX(-1); }
+
+        .spider {
+            position: fixed;
+            font-size: 4.5rem;
+            z-index: 7;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 15px rgba(168,85,247,0.5));
+            animation: spiderMove 4s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        .spider-one { top: 65px; left: 105px; }
+        .spider-two { top: 70px; right: 110px; font-size: 3.7rem; animation-delay: 1.5s; }
+
+        @keyframes spiderMove {
+            0% { transform: translateY(0) rotate(-4deg); }
+            100% { transform: translateY(25px) rotate(4deg); }
+        }
+
+        .spider-line {
+            position: fixed;
+            width: 2px;
+            height: 75px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0.15));
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .line-one { top: 0; left: 135px; }
+        .line-two { top: 0; right: 135px; }
+
+        .card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 500px;
+            padding: 42px 38px;
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(18, 8, 27, 0.97), rgba(7, 3, 13, 0.96));
+            border: 1px solid rgba(168, 85, 247, 0.75);
+            box-shadow: 0 0 35px rgba(124, 58, 237, 0.25), 0 0 90px rgba(249, 115, 22, 0.15), inset 0 0 30px rgba(124, 58, 237, 0.08);
+            backdrop-filter: blur(18px);
+            text-align: center;
+            animation: cardFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+
+        .skull-main {
+            font-size: 3.5rem;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.5)) drop-shadow(0 0 20px rgba(168,85,247,0.6));
+        }
+
+        .mini-line {
+            width: 90px;
+            height: 2px;
+            margin: 10px auto 18px;
+            background: linear-gradient(90deg, transparent, #f97316, #a855f7, #f97316, transparent);
+        }
+
+        h1 {
+            font-size: 2.05rem;
+            letter-spacing: 3px;
+            color: #fb923c;
+            text-shadow: 0 0 10px rgba(249,115,22,.65);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #c4b5fd;
+            font-size: .82rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .event-box {
+            position: relative;
+            padding: 22px;
+            margin-bottom: 25px;
+            border-radius: 17px;
+            background: linear-gradient(135deg, rgba(249,115,22,.08), rgba(124,58,237,.08));
+            border: 1px solid rgba(249,115,22,.3);
+            text-align: left;
+        }
+
+        .event-row {
+            padding: 8px 0;
+            color: #cbd5e1;
+            font-size: .96rem;
+            border-bottom: 1px solid rgba(255,255,255,.06);
+        }
+        .event-row:last-child { border-bottom: none; }
+        .event-row span { color: #fb923c; font-weight: 700; }
+
+        input {
+            width: 100%;
+            padding: 16px 18px;
+            margin-bottom: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(168,85,247,.45);
+            outline: none;
+            background: rgba(3,1,7,.9);
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f97316, #c2410c);
+            box-shadow: 0 8px 25px rgba(234,88,12,.25);
+            transition: .3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #fb923c, #ea580c);
+        }
+
+        .ticket {
+            margin-top: 22px;
+            padding: 25px 20px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(15,23,42,.95), rgba(5,5,12,.98));
+            border: 1px solid rgba(74,222,128,.55);
+        }
+
+        .ticket h3 { color: #4ade80; font-size: 1.25rem; margin-bottom: 10px; }
+        .ticket p { color: #e2e8f0; }
+        .ticket strong { color: #fb923c; }
+
+        #qrcode {
+            width: fit-content;
+            margin: 18px auto 0;
+            padding: 14px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 22px;
+            color: #c084fc;
+            text-decoration: none;
+            font-size: .9rem;
+        }
+        .back-link:hover { color: #fb923c; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="moon"></div>
+    
+    <!-- Izquierda: Texto YA KCHE YA!!! -->
+    <div class="left-diagonal-text">YA KCHE YA!!!</div>
+
+    <!-- Izquierda (Parte Inferior): Logo Estilo P...hub -->
+    <div class="bottom-left-logo">
+        <div class="hub-logo">
+            <span class="hub-white">Porn</span><span class="hub-orange">hub</span>
+        </div>
+    </div>
+
+    <!-- Derecha: MECATRONICOS!!! en diagonal -->
+    <div class="right-diagonal-text">MECATRONICOS!!!</div>
+
+    <div class="web web-left"></div>
+    <div class="web web-right"></div>
+    
+    <div class="spider-line line-one"></div>
+    <div class="spider spider-one">🕷️</div>
+    <div class="spider-line line-two"></div>
+    <div class="spider spider-two">🕷️</div>
+
+    <div class="card">
+        <div class="skull-main">💀</div>
+        <div class="mini-line"></div>
+        <h1>HALLOWEEN PARTY</h1>
+        <p class="subtitle">Casa de Nilton · Edición Especial</p>
+
+        <div class="event-box">
+            <div class="event-row">Fecha: <span>31 de Octubre</span></div>
+            <div class="event-row">Hora: <span>11:00 PM</span></div>
+            <div class="event-row">Lugar: <span>Casa de Nilton</span></div>
+        </div>
+
+        {% if not nombre %}
+            <form action="/" method="POST">
+                <input type="text" name="nombre" required autocomplete="name" placeholder="Escribe tu nombre">
+                <button type="submit">Generar mi Entrada VIP 🎟️</button>
+            </form>
+        {% else %}
+            <div class="ticket">
+                <h3>¡Pase VIP Generado!</h3>
+                <p>Invitado: <strong>{{ nombre }}</strong></p>
+                <p style="font-size: .82rem; color: #94a3b8; margin-top: 7px;">Muestra este código QR en la entrada.</p>
+                <div id="qrcode"></div>
+            </div>
+            
+            <a href="/" class="back-link">← Generar otro pase</a>
+
+            <script>
+                var nombreInvitado = {{ nombre | tojson }};
+                var qrText = "PASE VIP VALIDO - Evento: Halloween Casa de Nilton | Invitado: " + nombreInvitado + " | Fecha: 31 Oct - 11:00 PM";
+                new QRCode(document.getElementById("qrcode"), {
+                    text: qrText,
+                    width: 150,
+                    height: 150,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            </script>
+        {% endif %}
+    </div>
+
+</body>
+</html>
