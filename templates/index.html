@@ -417,7 +417,6 @@
                 left: 8px;
                 transform: scale(0.55);
             }
-            /* Ocultamos las imágenes flotantes laterales en pantallas muy pequeñas para que la tarjeta sea la estrella */
             .side-image-left, .side-image-right {
                 display: none;
             }
@@ -428,9 +427,9 @@
 
     <div class="moon"></div>
     
-    <!-- Imágenes flotantes decorativas con los nombres de tus archivos subidos -->
-    <img src="{{ url_for('static', filename='Captura de pantalla 2026-09-01 182707.png') }}" class="side-image-left" alt="Decoración 1">
-    <img src="{{ url_for('static', filename='Captura de pantalla 2026-09-01 182727.png') }}" class="side-image-right" alt="Decoración 2">
+    <!-- Imágenes cargadas desde la carpeta static -->
+    <img src="{{ url_for('static', filename='foto1.png') }}" class="side-image-left" alt="Decoración 1">
+    <img src="{{ url_for('static', filename='foto2.png') }}" class="side-image-right" alt="Decoración 2">
 
     <!-- Izquierda: Texto YA KCHE YA!!! -->
     <div class="left-diagonal-text">YA KCHE YA!!!</div>
