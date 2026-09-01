@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎃 HALLOWEEN PARTY - Casa de Nilton</title>
+    <!-- Usamos un CDN ultra confiable para el script de QR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -305,6 +306,9 @@
             padding: 14px;
             background: white;
             border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .back-link {
@@ -431,15 +435,22 @@
             <a href="/" class="back-link">← Generar otro pase</a>
 
             <script>
-                var nombreInvitado = {{ nombre | tojson }};
-                var qrText = "PASE VIP VALIDO - Evento: Halloween Casa de Nilton | Invitado: " + nombreInvitado + " | Fecha: 31 Oct - 11:00 PM";
-                new QRCode(document.getElementById("qrcode"), {
-                    text: qrText,
-                    width: 150,
-                    height: 150,
-                    colorDark: "#000000",
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H
+                // Aseguramos que el script del QR se ejecute de forma segura cuando cargue la página en cualquier dispositivo
+                window.addEventListener('DOMContentLoaded', function() {
+                    var nombreInvitado = {{ nombre | tojson }};
+                    var qrText = "PASE VIP VALIDO - Evento: Halloween Casa de Nilton | Invitado: " + nombreInvitado + " | Fecha: 31 Oct - 11:00 PM";
+                    
+                    var qrElement = document.getElementById("qrcode");
+                    if (qrElement && typeof QRCode !== "undefined") {
+                        new QRCode(qrElement, {
+                            text: qrText,
+                            width: 140,
+                            height: 140,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                    }
                 });
             </script>
         {% endif %}
