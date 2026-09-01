@@ -58,8 +58,8 @@
         .side-image-left {
             position: fixed;
             left: 3%;
-            top: 55%;
-            width: 130px;
+            top: 50%;
+            width: 120px;
             border-radius: 12px;
             border: 2px solid #a855f7;
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
@@ -72,8 +72,8 @@
         .side-image-right {
             position: fixed;
             right: 3%;
-            top: 55%;
-            width: 130px;
+            top: 50%;
+            width: 120px;
             border-radius: 12px;
             border: 2px solid #fb923c;
             box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
@@ -81,6 +81,20 @@
             pointer-events: none;
             transform: rotate(6deg);
             animation: floatImg2 4s ease-in-out infinite alternate;
+        }
+
+        .side-image-extra {
+            position: fixed;
+            right: 3%;
+            top: 72%;
+            width: 120px;
+            border-radius: 12px;
+            border: 2px solid #4ade80;
+            box-shadow: 0 0 15px rgba(74, 222, 128, 0.5);
+            z-index: 6;
+            pointer-events: none;
+            transform: rotate(-4deg);
+            animation: floatImg1 4s ease-in-out infinite alternate;
         }
 
         @keyframes floatImg1 {
@@ -358,17 +372,17 @@
         }
         .back-link:hover { color: #fb923c; text-decoration: underline; }
 
-        /* --- AJUSTE RESPONSIVO ÓPTIMO PARA CELULARES --- */
+        /* --- AJUSTE RESPONSIVO PARA CELULARES --- */
         @media (max-width: 850px) {
             body {
                 padding: 15px 10px;
-                align-items: flex-start; /* Permite scroll vertical fluido en celulares si hace falta */
+                align-items: flex-start;
             }
             .card {
                 padding: 20px 14px;
                 max-width: 100%;
                 border-radius: 20px;
-                margin-top: 65px; /* Espacio superior para que los textos de arriba no choquen */
+                margin-top: 65px;
                 margin-bottom: 60px;
             }
             .skull-main {
@@ -401,7 +415,6 @@
                 font-size: 0.9rem;
             }
             
-            /* Textos diagonales adaptados y perfectamente visibles arriba en celulares */
             .left-diagonal-text {
                 position: fixed;
                 top: 15px;
@@ -419,7 +432,6 @@
                 z-index: 12;
             }
             
-            /* Logo adaptado abajo a la izquierda */
             .bottom-left-logo {
                 position: fixed;
                 bottom: 10px;
@@ -428,24 +440,15 @@
                 z-index: 12;
             }
 
-            /* Hacemos que las imágenes laterales se reduzcan y se ubiquen sutilmente abajo o a los costados en móvil */
-            .side-image-left {
+            .side-image-left, .side-image-right, .side-image-extra {
                 position: relative;
                 display: inline-block;
-                width: 90px;
+                width: 75px;
                 top: auto;
                 left: auto;
-                margin: 10px 5px 0 0;
-                transform: rotate(-3deg);
-            }
-            .side-image-right {
-                position: relative;
-                display: inline-block;
-                width: 90px;
-                top: auto;
                 right: auto;
-                margin: 10px 0 0 5px;
-                transform: rotate(3deg);
+                margin: 6px 3px 0 3px;
+                transform: rotate(0deg);
             }
         }
     </style>
@@ -493,10 +496,11 @@
                 <button type="submit">Generar mi Entrada VIP 🎟️</button>
             </form>
             
-            <!-- CONTENEDOR DE TUS FOTOS DECORATIVAS EN MÓVIL Y PC -->
+            <!-- CONTENEDOR DE TUS 3 FOTOS DECORATIVAS -->
             <div style="margin-top: 15px; text-align: center;">
                 <img src="{{ url_for('static', filename='foto1.png') }}" class="side-image-left" alt="Decoración 1">
                 <img src="{{ url_for('static', filename='foto2.png') }}" class="side-image-right" alt="Decoración 2">
+                <img src="{{ url_for('static', filename='foto3.png') }}" class="side-image-extra" alt="Decoración 3">
             </div>
 
         {% else %}
