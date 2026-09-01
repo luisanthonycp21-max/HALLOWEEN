@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎃 HALLOWEEN PARTY - Casa de Nilton</title>
-    <!-- Usamos un CDN ultra confiable para el script de QR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,12 +12,12 @@
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             color: #f8fafc;
-            background:
-                linear-gradient(rgba(5, 2, 12, 0.55), rgba(5, 1, 8, 0.88)),
-                url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000&auto=format&fit=crop");
+            background-color: #0b071e; /* Fondo sólido inmediato para evitar pantalla negra */
+            background-image: 
+                linear-gradient(rgba(5, 2, 12, 0.65), rgba(5, 1, 8, 0.9)),
+                url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=60&w=1000&auto=format&fit=crop");
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -435,7 +434,6 @@
             <a href="/" class="back-link">← Generar otro pase</a>
 
             <script>
-                // Aseguramos que el script del QR se ejecute de forma segura cuando cargue la página en cualquier dispositivo
                 window.addEventListener('DOMContentLoaded', function() {
                     var nombreInvitado = {{ nombre | tojson }};
                     var qrText = "PASE VIP VALIDO - Evento: Halloween Casa de Nilton | Invitado: " + nombreInvitado + " | Fecha: 31 Oct - 11:00 PM";
