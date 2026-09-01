@@ -316,27 +316,37 @@
         }
         .back-link:hover { color: #fb923c; text-decoration: underline; }
 
-        /* --- AJUSTE VISIBLE EN CELULARES PARA LOS TEXTOS LATERALES --- */
+        /* --- AJUSTE ÓPTIMO PARA CELULARES: TARJETA MÁS COMPACTA Y TEXTOS MÁS VISIBLES --- */
         @media (max-width: 850px) {
+            body {
+                padding: 15px 10px;
+            }
+            .card {
+                padding: 25px 18px;
+                max-width: 100%;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
             .left-diagonal-text {
                 position: absolute;
-                top: 15px;
-                left: 15px;
-                transform: rotate(-10deg);
-                font-size: 1rem !important;
+                top: 12px;
+                left: 10px;
+                transform: rotate(-12deg);
+                font-size: 1.15rem !important;
             }
             .right-diagonal-text {
                 position: absolute;
-                top: 15px;
-                right: 15px;
-                transform: rotate(10deg);
-                font-size: 1rem !important;
+                top: 12px;
+                right: 10px;
+                transform: rotate(12deg);
+                font-size: 1.15rem !important;
             }
             .bottom-left-logo {
                 position: absolute;
-                bottom: 10px;
-                left: 15px;
-                transform: scale(0.7);
+                bottom: 8px;
+                left: 10px;
+                transform: scale(0.65);
             }
         }
     </style>
